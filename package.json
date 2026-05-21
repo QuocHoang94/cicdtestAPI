@@ -12,6 +12,7 @@
     "test:upload": "npx playwright test src/tests/uploadImage.spec.ts --headed",
     "test:delete-image": "npx playwright test src/tests/deleteImageFromSpecificBreed.spec.ts --headed",
     "test:upload-delete-204": "npx playwright test src/tests/uploadThenDeleteImage.spec.ts --headed",
+    "test:ci": "npx playwright test --reporter=github"
   },
   "keywords": [],
   "author": "",
