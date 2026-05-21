@@ -8,6 +8,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+
 jobs:
   api-tests:
     runs-on: ubuntu-latest
@@ -60,6 +64,25 @@ jobs:
           else
             echo "No allure-results directory found; skipping generation"
           fi
+
+      - name: Check for generated Allure report
+        id: check_allure
+        run: |
+          if [ -d "allure-report" ]; then
+            echo "has=true" >> $GITHUB_OUTPUT
+          else
+            echo "has=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload pages artifact for GitHub Pages
+        if: steps.check_allure.outputs.has == 'true'
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./allure-report
+
+      - name: Deploy to GitHub Pages
+        if: steps.check_allure.outputs.has == 'true'
+        uses: actions/deploy-pages@v3
 
       - name: Upload Allure report
         if: always()

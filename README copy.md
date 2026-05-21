@@ -283,3 +283,19 @@ Notes and troubleshooting:
 - If `allure-report` artifact is not present, confirm that tests produced `allure-results/` (the reporter configuration `allure-playwright` writes to that directory).
 
 
+Tóm tắt ngắn:
+
+Vấn đề: GitHub Actions upload artifact không hiển thị HTML trực tiếp trong giao diện; artifacts chỉ để tải về.
+Giải pháp đã áp dụng: cập nhật playwright-api.yml để
+chạy npx playwright test (không ghi đè reporter),
+tạo allure-report từ allure-results,
+nếu allure-report tồn tại -> upload-pages-artifact và deploy-pages để publish lên GitHub Pages,
+vẫn giữ upload artifact (downloadable) như trước.
+File đã sửa: playwright-api.yml:1-220
+Tiếp theo bạn có thể làm 1 trong các bước sau (chọn 1):
+
+Kích hoạt CI (push commit) để workflow chạy và publish report lên Pages:
+Sau job chạy xong, report sẽ có ở Pages URL kiểu:
+https://<GITHUB_USERNAME_OR_ORG>.github.io/<REPO_NAME>/
+(kiểm tra trang Settings → Pages nếu cần, và đảm bảo pages: write permission chấp nhận)
+
