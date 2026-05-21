@@ -49,7 +49,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright API tests
-        run: npm run test:ci
+        run: npx playwright test
 
       - name: Generate Allure report
         if: always()

@@ -1,0 +1,12 @@
+🔧 Setup: API Key and Endpoint initialized
+   API Endpoint: https://api.thedogapi.com/v1/breeds
+Status Code: 200
+✅ Schema validation passed!
+
+🖼️ Browser Image Display Details:
+  Image ID: 5UfpQCek72
+  Image URL: https://storage.googleapis.com/dog-api-uploads-prod/originals/11c76795-9f6b-4a72-aa7a-c3d66c2bf74a.jpeg
+  Natural Width: 421
+  Natural Height: 500
+
+✅ Uploaded image is visible in the browser!
