@@ -1,0 +1,27 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:api": "npx playwright test src/tests/getRetrieveAllBreeds_api.spec.ts --headed",
+    "test:breed": "npx playwright test src/tests/getRetrieve_specific_breed.spec.ts --headed",
+    "test:get-uploaded-image": "npx playwright test src/tests/getUploadedImageById.spec.ts --headed",
+    "test:get-random-images": "npx playwright test src/tests/getRandomImages.spec.ts --headed",
+    "test:display-uploaded-image": "npx playwright test src/tests/displayUploadedImage.spec.ts --headed",
+    "test:upload": "npx playwright test src/tests/uploadImage.spec.ts --headed",
+    "test:delete-image": "npx playwright test src/tests/deleteImageFromSpecificBreed.spec.ts --headed",
+    "test:upload-delete-204": "npx playwright test src/tests/uploadThenDeleteImage.spec.ts --headed",
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.13.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "joi": "^18.1.2"
+  }
+}

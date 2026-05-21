@@ -1,0 +1,62 @@
+name: Playwright API Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DOG_API_KEY: ${{ secrets.DOG_API_KEY }}
+      DOG_API_ENDPOINT: ${{ vars.DOG_API_ENDPOINT || 'https://api.thedogapi.com/v1/breeds' }}
+      CI: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Validate required environment variables
+        run: |
+          if [ -z "$DOG_API_KEY" ]; then
+            echo "DOG_API_KEY secret is required to run the test suite in CI."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright API tests
+        run: npm run test:ci
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload Playwright raw test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
