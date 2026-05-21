@@ -1,0 +1,32 @@
+{
+    "workbench.iconTheme": "vscode-great-icons",
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "print.folder.fileNames": true,
+    "print.folder.include": [],
+    "print.folder.exclude": [
+        "{bin,obj,out}",
+        "node_modules",
+        "data",
+        "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+    ],
+    "print.folder.maxLines": 1200,
+    "print.folder.maxFiles": 30,
+    "print.folder.includeFileList": false,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "mcp": {
+        "servers": {
+            "my-mcp-server-6cc62672": {
+                "type": "stdio",
+                "command": "playwright",
+                "args": []
+            },
+            "playwright": {
+                "command": "npx",
+                "args": [
+                    "@playwright/mcp@latest"
+                ]
+            }
+        }
+    }
+}
