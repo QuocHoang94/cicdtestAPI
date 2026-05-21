@@ -28,9 +28,17 @@ jobs:
 
       - name: Validate required environment variables
         run: |
+          # If the secret is missing, fail only on non-PR runs. For pull requests
+          # (often from forks) we warn and skip to avoid failing CI for external
+          # contributors who cannot set repo secrets.
           if [ -z "$DOG_API_KEY" ]; then
-            echo "DOG_API_KEY secret is required to run the test suite in CI."
-            exit 1
+            if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+              echo "Warning: DOG_API_KEY is not set. Skipping tests for pull requests."
+              exit 0
+            else
+              echo "DOG_API_KEY secret is required to run the test suite in CI."
+              exit 1
+            fi
           fi
 
       - name: Install dependencies
