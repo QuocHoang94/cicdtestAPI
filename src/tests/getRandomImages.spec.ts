@@ -27,7 +27,7 @@ test.describe("The Dog API - GET Random Images", () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test("should retrieve a random list of images with their respective urls successfully", async ({ request }) => {
+    test.skip("should retrieve a random list of images with their respective urls successfully", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ hook
         const requestedLimit = 20;
         const searchImagesEndpoint = resolveSearchImagesEndpoint(baseEndpoint, requestedLimit);

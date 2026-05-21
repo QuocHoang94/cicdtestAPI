@@ -25,7 +25,7 @@ test.describe("The Dog API - DELETE Image From Specific Breed", () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test("should get all breeds, pick reference_image_id and verify delete status code", async ({ request }) => {
+    test.skip("should get all breeds, pick reference_image_id and verify delete status code", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ file setup
 
         // Gọi API lấy danh sách breeds

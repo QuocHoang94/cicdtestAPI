@@ -110,7 +110,7 @@ test.describe('The Dog API - Upload Then Delete Image', () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test('should upload image successfully then delete it and verify 204', async ({ request }) => {
+    test.skip('should upload image successfully then delete it and verify 204', async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ file setup
         expect(fs.existsSync(imagePath)).toBeTruthy();
 

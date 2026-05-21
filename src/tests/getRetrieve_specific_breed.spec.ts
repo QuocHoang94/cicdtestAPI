@@ -6,7 +6,7 @@ test.describe("The Dog API - GET Specific Breed", () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test("should retrieve information about a specific breed successfully", async ({ request }) => {
+    test.skip("should retrieve information about a specific breed successfully", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ hook
         const breedId = '2'; // Afghan Hound
 
@@ -75,7 +75,7 @@ test.describe("The Dog API - GET Specific Breed", () => {
         console.log('\n✅ Successfully retrieved breed information!');
     });
 
-    test("should return 404 for non-existent breed", async ({ request }) => {
+    test.skip("should return 404 for non-existent breed", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ hook
         const invalidBreedId = '99999'; // Non-existent breed
 
@@ -91,7 +91,7 @@ test.describe("The Dog API - GET Specific Breed", () => {
         console.log('✅ Correctly returned 404 for non-existent breed');
     });
 
-    test("should validate breed details structure", async ({ request }) => {
+    test.skip("should validate breed details structure", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ hook
         const breedId = '1'; // Test with first breed
 

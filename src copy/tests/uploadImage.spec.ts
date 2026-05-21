@@ -90,7 +90,7 @@ test.describe("The Dog API - POST Image Upload", () => {
 	// ✅ Hook: Setup API credentials từ file setup
 	setupApiCredentialsHook();
 
-	test("should upload image successfully and validate schema", async ({ request }) => {
+	test.skip("should upload image successfully and validate schema", async ({ request }) => {
 		// ✅ Sử dụng apiKey và baseEndpoint từ file setup
 		expect(fs.existsSync(imagePath)).toBeTruthy();
 

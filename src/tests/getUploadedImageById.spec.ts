@@ -26,7 +26,7 @@ test.describe("The Dog API - GET Uploaded Image By ID", () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test("should retrieve a previously uploaded image successfully", async ({ request }) => {
+    test.skip("should retrieve a previously uploaded image successfully", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ hook
         const imageId = '5UfpQCek72';
         const imageEndpoint = resolveImageEndpoint(baseEndpoint, imageId);

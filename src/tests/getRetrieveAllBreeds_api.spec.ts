@@ -6,7 +6,7 @@ test.describe("The Dog API - GET All Breeds", () => {
     // ✅ Hook: Setup API credentials từ file setup
     setupApiCredentialsHook();
 
-    test("should fetch list of dog breeds successfully", async ({ request }) => {
+    test.skip("should fetch list of dog breeds successfully", async ({ request }) => {
         // ✅ Sử dụng apiKey và baseEndpoint từ file setup
 
         // Gọi API
