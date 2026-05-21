@@ -51,6 +51,25 @@ jobs:
       - name: Run Playwright API tests
         run: npm run test:ci
 
+      - name: Generate Allure report
+        if: always()
+        run: |
+          # Generate Allure HTML report from results (if any)
+          if [ -d "allure-results" ]; then
+            npx allure-commandline generate allure-results -o allure-report --clean || echo "Allure generation failed"
+          else
+            echo "No allure-results directory found; skipping generation"
+          fi
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Upload Playwright HTML report
         if: always()
         uses: actions/upload-artifact@v4

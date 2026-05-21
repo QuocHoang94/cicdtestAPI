@@ -1,5 +1,9 @@
 # Dog API Test Automation
 
+[!-- CI Status Badge -->
+[![Playwright API Tests](https://github.com/curryhoang/cicdtestAPI/actions/workflows/playwright-api.yml/badge.svg)](https://github.com/curryhoang/cicdtestAPI/actions/workflows/playwright-api.yml)
+
+
 This repository contains an API test automation project built with **TypeScript**, **Playwright**, and **Joi** for validating The Dog API.
 
 The current test coverage focuses on:
@@ -25,7 +29,7 @@ The current test coverage focuses on:
 
 ### Setup steps
 
-```bash`
+```bash
 npm install
 npx playwright install chromium
 ```
@@ -244,4 +248,38 @@ git push --force
 - Or use the BFG Repo Cleaner: https://rtyley.github.io/bfg-repo-cleaner/
 
 After purging history, inform collaborators to re-clone the repository.
+
+## CI/CD — How to run and view reports
+
+This project uses GitHub Actions (`.github/workflows/playwright-api.yml`) to run the Playwright test suite and produce test artifacts (HTML report, `test-results/`, and an Allure HTML report when results exist).
+
+Quick checklist to run CI on GitHub:
+- Add your `DOG_API_KEY` to the repository secrets (required):
+   - GUI: Repository → Settings → Secrets and variables → Actions → New repository secret → Name: `DOG_API_KEY` → Value: your key.
+   - CLI: `echo -n "your_real_api_key" | gh secret set DOG_API_KEY --repo OWNER/REPO`
+- Push a commit to `main`/`master` or run the workflow manually: Actions → Playwright API Tests → Run workflow (choose branch).
+
+What the workflow produces:
+- `playwright-report/` (Playwright HTML reporter)
+- `test-results/` (raw Playwright results)
+- `allure-report/` (Allure HTML, generated from `allure-results` if present)
+
+How to view reports after a workflow run:
+- In the workflow run UI, open the step logs and look for uploads; artifacts are attached at the top-right "Artifacts" section.
+- Download the `allure-report` (or `playwright-report`) artifact, unzip it locally and open `index.html` in your browser to view the full HTML report.
+
+Generate or open Allure report locally (optional):
+1. Ensure `allure-commandline` is installed (we added it as a devDependency). Generate from results produced by Playwright:
+```bash
+npm run allure:generate
+```
+2. Open the generated report locally:
+```bash
+npm run allure:open
+```
+
+Notes and troubleshooting:
+- If the workflow does not run on a pull request from a fork, that's intentional: repository secrets are not exposed to forked PRs. Use a branch in the same repo or run the workflow manually.
+- If `allure-report` artifact is not present, confirm that tests produced `allure-results/` (the reporter configuration `allure-playwright` writes to that directory).
+
 

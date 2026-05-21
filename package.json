@@ -12,14 +12,18 @@
     "test:upload": "npx playwright test src/tests/uploadImage.spec.ts --headed",
     "test:delete-image": "npx playwright test src/tests/deleteImageFromSpecificBreed.spec.ts --headed",
     "test:upload-delete-204": "npx playwright test src/tests/uploadThenDeleteImage.spec.ts --headed",
-    "test:ci": "npx playwright test --reporter=github"
+    "test:ci": "npx playwright test --reporter=github",
+    "allure:generate": "npx allure-commandline generate allure-results -o allure-report --clean",
+    "allure:open": "npx allure-commandline open allure-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.13.5"
+    "@types/node": "^22.13.5",
+    "allure-playwright": "^2.38.0",
+    "allure-commandline": "^2.17.3"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
